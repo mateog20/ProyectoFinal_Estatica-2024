@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleLogin.css">
+    <script src="js/usuarios.js"></script>
+    <script src="js/validaciones.js"></script>
+    <title>Registro</title>
+</head>
+<header class="header">
+    <button id="backBtn" class="header-btn" onclick="location.href='index.html'"><i class="fas fa-arrow-left" ></i> Volver al Inicio</button>
+</header>
+<body>
+ 
+   <div class="container background-image" id="container">
+        <div class="area_formulario">
+            <p class="titulo">REGISTRO</p>
+            <form id="registroForm" onsubmit="return registrarUsuario()">
+                <div class="form">
+                    <label class="sub_titulo" for="name">Usuario</label>
+                    <input placeholder="Ingresa tu usuario" id="usuario" class="estilo_input" type="text">
+                </div>
+                <div class="form">
+                    <label class="sub_titulo" for="email">Email</label>
+                    <input placeholder="Ingresa tu email" id="email" class="estilo_input" type="email" required>
+                </div>
+                <div class="form">
+                    <label class="sub_titulo" for="contraseña">Contraseña</label>
+                    <input placeholder="Ingresa tu contraseña" id="password" class="estilo_input" type="password" required>
+                </div>
+                <div class="form">
+                    <label class="sub_titulo" for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                    <div class="fecha_nacimiento">
+                        <input type="text" id="dia" name="dia" placeholder="Día" class="estilo_input_fecha">
+                        <input type="text" id="mes" name="mes" placeholder="Mes" class="estilo_input_fecha">
+                        <input type="text" id="anio" name="anio" placeholder="Año" class="estilo_input_fecha">
+                    </div>
+                </div>
+                <div class="form">
+                    <label class="sub_titulo" for="nombre">Nombre (opcional)</label>
+                    <input placeholder="Ingresa tu nombre real" id="nombre" class="estilo_input" type="text">
+                </div>
+                <button class="boton" onclick="validar()"   type="submit">REGISTRARSE</button>
+                <p id="registroMensaje" class="registro-mensaje"></p>
+                <p>¿Ya tienes una cuenta? <a class="link" href="login.html">Ingresa aquí</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

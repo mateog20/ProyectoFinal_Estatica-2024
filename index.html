@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Trivia Música</title>
+  </head>
+
+  <body>
+    <div class="container" id="container">
+      <!-- HEADER -->
+      <header class="header">
+        <button id="modo-oscuro-btn" class="header-btn" onclick="cambiarModo()">
+          Modo Oscuro
+        </button>
+        <button id="button-logout" type="button" onclick="logout()">
+          Logout
+        </button>
+        <button
+          id="button-registro"
+          type="button"
+          value="REGISTRARSE/INICIAR SESION"
+          onclick="location.href='registro.html'"
+        >
+          REGISTRARSE/INICIAR SESIÓN
+        </button>
+      </header>
+
+      <!-- CENTRO -->
+      <div class="centro" id="centro">
+        <div class="imagen-perfil" id="imagen-perfil">
+          <img src="img/images.png" id="perfil" class="perfil" />
+        </div>
+        <div id="usuarioLogueado" style="display: none">
+          <p>Bienvenido, <span id="nombreUsuario"></span></p>
+
+          <div class="button-jugar" id="button-jugar">
+            <input
+              type="button"
+              value="JUGAR ▶"
+              id="jugar"
+              class="jugar"
+              onclick="location.href='game.html'"
+            />
+          </div>
+        </div>
+        <div id="puntajeUsuario">
+          <h2>Mejor puntaje: <span id="puntajeTotal"></span></h2>
+          <ul id="listaPuntajes"></ul>
+        </div>
+        <div id="rankingUsuarios">
+          <h2>Ranking de Usuarios</h2>
+          <ol id="listaRanking" class="ranking-grid"></ol>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/usuarios.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        mostrarPuntaje(); // Asegúrate de que se llame a esta función al cargar la página
+        mostrarRanking(); // Llama a la función para mostrar el ranking
+      });
+
+      function mostrarRanking() {
+        let users = obtenerUsuariosOrdenadosPorPuntaje();
+        let listaRanking = document.getElementById("listaRanking");
+        // Limpiar lista anteriormente mostrada
+        listaRanking.innerHTML = "";
+        // Mostrar hasta los primeros 10 usuarios en el ranking
+        users.slice(0, 10).forEach((user, index) => {
+          let listItem = document.createElement("li");
+          listItem.textContent = `${index + 1}. ${user.username} - Puntaje: ${
+            user.mejorPuntaje || 0
+          }`;
+          listaRanking.appendChild(listItem);
+        });
+      }
+
+      function mostrarPuntaje() {
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        console.log(currentUser); // Verifica si currentUser contiene los datos correctos
+        if (currentUser && currentUser.username) {
+          // Mostrar el nombre de usuario
+          mostrarNombreUsuario(currentUser.username);
+          // Mostrar el mejor puntaje
+          document.getElementById("puntajeTotal").textContent =
+            currentUser.mejorPuntaje || 0;
+          // Mostrar el botón de logout
+          document.getElementById("button-logout").style.display = "block";
+        } else {
+          // Ocultar el botón de logout si no hay un usuario logueado
+          document.getElementById("button-logout").style.display = "none";
+        }
+      }
+      function logout() {
+        // Eliminar la información del usuario actual del localStorage
+        localStorage.removeItem("currentUser");
+
+        // Redirigir a la página de inicio de sesión
+        window.location.href = "registro.html";
+      }
+      function cambiarModo() {
+        document.body.classList.toggle("modo-oscuro");
+        const modoOscuroBtn = document.getElementById("modo-oscuro-btn");
+        modoOscuroBtn.textContent = document.body.classList.contains(
+          "modo-oscuro"
+        )
+          ? "Modo Claro"
+          : "Modo Oscuro";
+      }
+    </script>
+  </body>
+</html>

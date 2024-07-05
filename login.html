@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleLogin.css">
+    <script src="js/usuarios.js"></script>
+    <title>Iniciar sesión</title>
+</head>
+<header class="header">
+    <button id="backBtn" class="header-btn" onclick="location.href='index.html'"><i class="fas fa-arrow-left" ></i> Volver al Inicio</button>
+</header>
+<body>
+    <div class="container">
+        <div class="area_formulario">
+            <p class="titulo">Iniciar sesión</p>
+            <form onsubmit="return iniciarSesion()">
+                <div class="form">
+                    <label class="sub_titulo" for="email">Email</label>
+                    <input placeholder="Ingresa tu email" id="email" class="estilo_input" type="email">
+                </div>
+                <div class="form">
+                    <label class="sub_titulo" for="password">Contraseña</label>
+                    <input placeholder="Ingresa tu contraseña" id="password" class="estilo_input" type="password">
+                </div>
+                <div id="mensaje-error" class="mensaje-error" style="display: none;">Datos incorrectos. Por favor, inténtalo de nuevo.</div>
+                <div>
+                <div>
+                    <button class="boton" type="submit">Iniciar sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

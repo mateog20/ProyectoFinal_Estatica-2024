@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleGame.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>Juego Musica</title>
+</head>
+
+<body>
+    <div id="cartelListo" style="display: none;">
+        <p>¿Estás listo para jugar?</p>
+        <br>
+        <button id="btnSi">Sí</button>
+        <button id="btnNo">No</button>
+      </div>
+      <div id="cartelFin" class="cartel">
+        <h2>¡Fin del juego!</h2>
+        <p>Todas las canciones han sido reproducidas.</p>
+        <button id="finJuego">Salir</button>
+      </div>
+    <header class="header">
+        <button id="backBtn" class="header-btn" onclick="location.href='index.html'"><i class="fas fa-arrow-left" ></i> Volver al Inicio</button>
+        <button id="modo-oscuro-btn" class="header-btn" onclick="cambiarModo()">Modo Oscuro</button>
+    </header>
+    <div class="container">
+        <!-- Carteles ocultos  -->
+
+        <div class="resultado" id="ganador">
+            ¡Correcto!, Has ganado: <span id="puntos">0</span> puntos
+        </div>
+        <div id="perdedor" class="mensaje-perdedor">
+            <div>¡Incorrecto!</div>
+            <div>La respuesta correcta era: <span id="respuesta-correcta"></span></div>
+            <button id="salirBtn">Salir</button>
+            <button id="reiniciarBtnPerdio">Reiniciar</button>
+        </div>
+        <div id="tiempo-agotado" class="cartel">
+            <h2>¡Tiempo agotado!</h2>
+            <p>Se acabó el tiempo. ¿Quieres jugar de nuevo?</p>
+            <button id="reiniciarBtn">Reiniciar</button>
+          </div>
+        <!-- Componente de audio -->
+        <audio id="audio">
+            <source id="audio_src" type="audio/mp3">
+        </audio>
+        <p>Ronda: <span id="numero-ronda">1</span></p>
+        <div class="container-music">
+            <div class="music-player">
+                <div id="contador" class="contador">Tiempo restante: <span id="tiempo-restante">10</span> segundos</div>
+                <br>
+                <div class="barra-progreso">
+                    <div class="progreso" id="progreso"></div>
+                </div>
+                <div class="controles">
+                    <!-- Boton de play  -->
+                    <button id="playBtn" class="action-btn action-btn-big">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="tiempo-transcurrido" id="tiempo-transcurrido">0:00</div>
+                    <!-- Boton de mute -->
+                    <button id="muteBtn" class="action-btn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <!-- Barra de volumen -->
+                    <input type="range" id="volumenBar" class="volumen-bar" min="0" max="100" value="100" step="1">
+                    <span id="volumenValor">100%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="opciones">
+            <input type="button" class="op" id="op1">
+            <input type="button" class="op" id="op2">
+            <input type="button" class="op" id="op3">
+            <input type="button" class="op" id="op4">
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+
+</html>
